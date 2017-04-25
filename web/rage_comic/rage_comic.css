@@ -1,0 +1,15 @@
+textarea {
+    border: 0px;
+    resize: none;
+    overflow: hidden;
+}
+
+.apeSpriteCon {
+    position: absolute;
+    overflow: hidden;
+}
+
+.apeActor {
+    position: absolute;
+    background: transparent;
+}

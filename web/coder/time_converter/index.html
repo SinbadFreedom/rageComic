@@ -1,0 +1,72 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>时间戳转换</title>
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body onload="init();">
+
+<nav id="header"></nav>
+
+<div class="container-fluid" id="apeContainer">
+    <h3 class="text-center">时间戳转换</h3>
+    <div id="config">
+        <div class="form-inline">
+            <label for="lang">语言(ISO 639-1):</label>
+            <select class="form-control" id="lang" name="lang" size="1" onchange="changeDemo()">
+                <optgroup label="autodetected">
+                    <option>
+                        <script>document.write((navigator.language) ? navigator.language : navigator.userLanguage);</script>
+                    </option>
+                </optgroup>
+                <optgroup label="supported">
+                    <option>zh-CN</option>
+                    <option>en</option>
+                    <option>ru</option>
+                    <option>de</option>
+                    <option>it</option>
+                    <option>es</option>
+                    <option>fr</option>
+                    <option>pt</option>
+                    <option>nl</option>
+                    <option>int</option>
+                </optgroup>
+            </select>
+            <label for="detail">详细信息:</label>
+            <select class="form-control" id="detail" name="detail" size="1" onchange="changeDemo()">
+                <option>on</option>
+                <option>off</option>
+            </select>
+        </div>
+
+
+    </div>
+    <div id="examples">
+        <p>当前时间戳:
+            <script>document.write(new Date().valueOf());</script>
+        </p>
+        <p>请输入时间戳</p>
+        <input class="form-control" id="inputTime" type="text" value="" oninput="changeDemo()"/>
+        <label for="convertDate">日期</label>
+        <p id="convertDate"></p>
+        <label for="convertTime">时间差</label>
+        <p id="convertTime"></p>
+        <label>请输入日期</label>
+        <input class="form-control" id="inputDate" type="text" value="" oninput="convertDateToTimeStamp()"/>
+        <label for="convertTimeStamp">时间戳</label>
+        <p id="convertTimeStamp"></p>
+    </div>
+</div>
+
+<footer id="footer"></footer>
+
+<script src="../../assets/js/vendor/jquery.min.js"></script>
+
+<script src="js/disTime.js" type="text/javascript"></script>
+<script src="js/disTime.i18n.js" type="text/javascript"></script>
+<script src="js/disTime.i18n.js" type="text/javascript"></script>
+<script src="js/converter.js" type="text/javascript"></script>
+</body>
+</html>

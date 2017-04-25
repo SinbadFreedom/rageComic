@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/assets/css/apeWeb.css">
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/i18n/language.js"></script>
+    <script src="/assets/js/header_footer.js"></script>
+    <style>
+        body {
+            background-color: darkgrey;
+        }
+        textarea {
+            border: 0px;
+        }
+        .apeSpriteCon {
+            position: relative;
+            overflow: hidden;
+            float: left;
+            background-color: white;
+            margin-left: 2px;
+            margin-top: 2px;
+        }
+        .apeActor {
+            position: absolute;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+<script>
+    writeHeader();
+</script>
+<div id="comicContent" class="container-fluid"></div>
+<div id="comicImage" class="container-fluid"></div>
+
+<script src="/assets/js/vendor/jquery.min.js"></script>
+<script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="/cookie.js"></script>
+<script src="/ljh_utils.js"></script>
+<script src="/rage_comic/rage_canvas.js"></script>
+<script src="/assets/js/html2canvas/html2canvas.js"></script>
+<script>
+    var uid = getUrlParam(uid);
+    if(null == uid) {
+        $(document).ready(getAllArtifact());
+    } else {
+        $(document).ready(getSelfArtifact(uid));
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MD5加密</title>
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/assets/js/vendor/jquery.min.js"></script>
+    <script src="jquery.md5.js"></script>
+</head>
+<body>
+<script>
+    function md5Encrypt() {
+        var str = $('#string_input').val();
+        var strMd5 = $.md5(str);
+        $('#string_output').val(strMd5);
+    }
+</script>
+<div class="container-fluid" id="apeContainer">
+    <h3 class="text-center">MD5加密</h3>
+    <textarea class="form-control" rows="1" id="string_input" spellcheck="false" placeholder="请输入字符串..." oninput="md5Encrypt()"></textarea>
+    <label for="string_output">加密后的字符串:</label>
+    <textarea class="form-control" rows="1" id="string_output" spellcheck="false" ></textarea>
+</div>
+</body>
+</html>

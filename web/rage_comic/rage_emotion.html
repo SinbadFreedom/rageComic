@@ -1,0 +1,150 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/rage_comic/offcanvas.css" rel="stylesheet">
+    <script src="/i18n/language.js"></script>
+    <script src="/assets/js/header_footer.js"></script>
+    <style>
+        textarea {
+            border: 0px !important;
+            resize: none !important;
+            overflow: hidden !important;
+        }
+
+        .apeBtn {
+            cursor: pointer;
+        }
+
+        .apeActor {
+            position: absolute;
+            background: transparent;
+        }
+
+        .apeSpriteCon {
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .color {
+            width: 60px;
+            height: 60px;
+            float: left;
+            cursor: pointer;
+            border: 1px solid;
+            margin-left: 4px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body onload="init()" ondragstart="return false">
+<script>
+    writeHeader();
+</script>
+<div class="container-fluid">
+    <div class="row">
+        <div id="clickHideUIArea">
+            <div class="row">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">加图<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a id="btnImageLib_0" data-toggle="modal" data-target="#modalImgLib">暴漫</a></li>
+                        <li><a id="btnImageLib_1">金馆长</a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary" id="btnAddText">加字</button>
+                <button class="btn btn-warning" id="btnDel">删除</button>
+                <button class="btn btn-success" id="btnSave">保存</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalSetting">设置</button>
+            </div>
+            <hr>
+            <div class="row" id="apeCanvas" style="border: 1px dotted #17468c; overflow: hidden; position: absolute; background-color: #FFFFFF; z-index: 996;"></div>
+        </div>
+
+        <div class="modal fade" id="modalImgLib" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">图片库</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="divImgLib" style="height: auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalSetting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">设置</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div>
+                                <label for="spriteWidth">宽:</label>
+                                <select id="spriteWidth">
+                                    <option value="100">100</option>
+                                    <option value="200">200</option>
+                                    <option value="300" selected="selected">300</option>
+                                    <option value="400">400</option>
+                                    <option value="500">500</option>
+                                    <option value="600">600</option>
+                                    <option value="800">800</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="spriteHeight">高:</label>
+                                <select id="spriteHeight">
+                                    <option value="100">100</option>
+                                    <option value="200">200</option>
+                                    <option value="300" selected="selected">300</option>
+                                    <option value="400">400</option>
+                                    <option value="500">500</option>
+                                    <option value="600">600</option>
+                                    <option value="800">800</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <b>字体大小:</b>
+                            <select id="apeFontSize">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="32" selected="selected">32</option>
+                                <option value="48">48</option>
+                                <option value="72">72</option>
+                            </select>
+                        </div>
+                        <div>
+                            <b>是否加粗:</b>
+                            <input type="checkbox" id="apeFontBold">是
+                        </div>
+                        <div>
+                            <b>字体颜色:</b>
+                            <img class="apeBtn" id="fontColorPicker" style="background-color: #000000;" src="/image/placeholder.png" width="20px" height="20px">
+                        </div>
+                        <div id="apeColorPicker" class="row"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/js/vendor/jquery.min.js"></script>
+<script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="/i18n/language.js"></script>
+<script src="/rage_comic/rage_canvas.js"></script>
+<script src="/cookie.js"></script>
+</body>
+</html>

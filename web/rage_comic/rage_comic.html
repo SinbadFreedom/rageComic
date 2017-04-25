@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/i18n/language.js"></script>
+    <script src="/assets/js/header_footer.js"></script>
+    <link href="/rage_comic/offcanvas.css" rel="stylesheet">
+    <style>
+        textarea {
+            border: 0px !important;
+            resize: none !important;
+            overflow: hidden !important;
+        }
+
+        .apeBtn {
+            cursor: pointer;
+        }
+
+        .apeActor {
+            position: absolute;
+            background: transparent;
+        }
+
+        .apeSpriteCon {
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .color {
+            width: 60px;
+            height: 60px;
+            float: left;
+            cursor: pointer;
+            border: 1px solid;
+            margin-left: 4px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body onload="init()" ondragstart="return false">
+<script>
+    writeHeader();
+</script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="clickHideUIArea">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" style="height: 1800px">
+                <div class="pull-right visible-xs">
+                    <button type="button" class="btn btn-primary" id="btnSet">设置</button>
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary" id="btnImageLib_0">添加图片</button>
+                    <button class="btn btn-primary" id="btnAddText">添加文本</button>
+                    <button class="btn btn-primary" id="btnGoPrevious">上一副</button>
+                    <button class="btn btn-primary" id="btnGoNext">下一副</button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">编辑<span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a id="btnDel">删除</a></li>
+                            <li><a id="apeZoomFitBest">最佳</a></li>
+                            <li><a id="apeZoomIn">放大</a></li>
+                            <li><a id="apeZoomOut">缩小</a></li>
+                            <li><a id="btnGoUp">上移一层</a></li>
+                            <li><a id="btnGoDown">下移一层</a></li>
+                            <li><a id="btnGoTop">至顶层</a></li>
+                            <li><a id="btnGoBottom">至底层</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-success" id="btnSave">保存</button>
+                </div>
+                <hr>
+                <div class="row">
+                    <span><b>标题: </b></span>
+                    <input id="comicTitle" type="text" maxlength="48" placeholder="请输入标题...">
+                </div>
+                <hr>
+                <span>编辑区</span>
+                <div class="row" id="apeCanvas" style="border: 1px dotted #17468c; overflow: hidden; position: absolute; background-color: #FFFFFF; z-index: 996;"></div>
+                <div class="row">
+                    <img src="/image/placeholder.png" width="300px" height="300px">
+                </div>
+                <hr>
+                <span>预览区</span>
+                <div class="row" id="apeComicView" style="position: absolute; z-index: 995;"></div>
+            </div>
+        </div>
+        <div class="row-offcanvas row-offcanvas-right" style="z-index: 999">
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 sidebar-offcanvas-right" style="background-color: #E3EDCD; height: 1800px">
+                <div>
+                    <div class="visible-xs row">
+                        <button class="btn btn-danger pull-left" id="closeRight"><h3>收起</h3></button>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="horizontalNum">横向格数:</label>
+                            <select id="horizontalNum">
+                                <option value="1" selected="selected">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="verticalNum">纵向格数:</label>
+                            <select id="verticalNum">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4" selected="selected">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="spriteWidth">宽:</label>
+                            <select id="spriteWidth">
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="300" selected="selected">300</option>
+                                <option value="400">400</option>
+                                <option value="500">500</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="spriteHeight">高:</label>
+                            <select id="spriteHeight">
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="300" selected="selected">300</option>
+                                <option value="400">400</option>
+                                <option value="500">500</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <b>字体:</b>
+                            <select id="apeFontFamily">
+                                <option value="Serif">Serif</option>
+                                <option value="Sans-serif">Sans-serif</option>
+                                <option value="Monospace">Monospace</option>
+                                <option value="Cursive">Cursive</option>
+                                <option value="Fantasy">Fantasy</option>
+                                <option value="Microsoft YaHei" selected="selected">微软雅黑</option>
+                                <option value="SimSun">宋体</option>
+                                <option value="SimHei">黑体</option>
+                                <option value="KaiTi_GB2312">楷体_GB2312</option>
+                            </select>
+                        </div>
+                        <div>
+                            <b>大小:</b>
+                            <select id="apeFontSize">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="32" selected="selected">32</option>
+                                <option value="48">48</option>
+                                <option value="72">72</option>
+                            </select>
+                        </div>
+                        <div>
+                            <b>粗体:</b>
+                            <input type="checkbox" id="apeFontBold">是
+                        </div>
+                        <div>
+                            <b>颜色:</b>
+                            <img class="apeBtn" id="fontColorPicker" style="background-color: #000000;" src="/image/placeholder.png" width="20px" height="20px">
+                        </div>
+                        <div id="apeColorPicker" class="row"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-offcanvas row-offcanvas-left">
+            <div class="sidebar-offcanvas-left" style="background-color: #EAEAEF; z-index: 1000; height: 1800px">
+                <button class="btn btn-danger pull-right" id="closeLeft"><h3>收起</h3></button>
+                <div class="pull-left" id="divImgLib"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/js/vendor/jquery.min.js"></script>
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="/rage_comic/rage_canvas.js"></script>
+    <script src="/cookie.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>二维码转换</title>
+    <link href="qrcode_generator.css" type="text/css" rel="stylesheet">
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="header"></nav>
+
+<div class="container-fluid" id="apeContainer">
+    <h3 class="text-center">二维码转换</h3>
+    <form name="qrForm">
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="degree">精度:</label>
+                <select class="form-control" name="t" id="degree">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="5" selected="selected">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                </select>
+                <label for="tolerance">容错率:</label>
+                <select class="form-control" name="e" id="tolerance">
+                    <option value="L">L(7%)</option>
+                    <option value="M" selected="selected">M(15%)</option>
+                    <option value="Q">Q(25%)</option>
+                    <option value="H">H(30%)</option>
+                </select>
+            </div>
+        </div>
+        <textarea class="form-control" rows="1" name="msg" placeholder="请输入需要转化的网址或字符串..."></textarea>
+    </form>
+    <input class="btn btn-primary" type="button" value="转化" onclick="update_qrcode()"/>
+
+    <div id="qr"></div>
+</div>
+
+<footer id="footer"></footer>
+<script src="../../assets/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="qrcode.js"></script>
+<script type="text/javascript" src="sample.js"></script>
+</body>
+</html>

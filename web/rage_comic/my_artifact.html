@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/assets/css/apeWeb.css">
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/i18n/language.js"></script>
+    <script src="/assets/js/header_footer.js"></script>
+    <style>
+        textarea {
+            border: 0px;
+        }
+
+        .apeSpriteCon {
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .apeActor {
+            position: absolute;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+<script>
+    writeHeader();
+</script>
+</nav>
+<div class="container-fluid">
+    <h2 class="sub-header">作品列表</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>标题</th>
+                <th>作者</th>
+                <th>日期</th>
+            </tr>
+            </thead>
+            <tbody id="rageLib">
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    writeFooter();
+</script>
+<script src="/assets/js/vendor/jquery.min.js"></script>
+<script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="/cookie.js"></script>
+<script src="/ljh_utils.js"></script>
+<script src="/rage_comic/rage_canvas.js"></script>
+<script>
+    var uid = getCookie('uid');
+    $(document).ready(getSelfArtifact(uid));
+</script>
+</body>
+</html>

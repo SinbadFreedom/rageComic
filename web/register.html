@@ -1,0 +1,83 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="/favicon.ico">
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/apeWeb.css">
+    <link href="signin.css" rel="stylesheet">
+    <script src="/i18n/language.js"></script>
+    <script src="/assets/js/header_footer.js"></script>
+</head>
+<body>
+<script>
+    writeHeader();
+</script>
+<div class="container">
+    <h2 style="text-align: center">注册</h2>
+    <form>
+        <label for="inputAccount"><span style="color:red;">*</span> 账号<span style="color: #16a765">(6位以上,推荐使用QQ号)</span>:</label>
+        <input type="email" id="inputAccount" class="form-control" required autofocus>
+        <label for="inputPassword"><span style="color:red;">*</span> 密码:</label>
+        <input type="password" id="inputPassword" class="form-control" required>
+        <label for="verifyPassword"><span style="color:red;">*</span> 再次输入密码:</label>
+        <input type="password" id="verifyPassword" class="form-control" required>
+        <label for="inputName"><span style="color:red;">*</span> 昵称:</label>
+        <input type="email" id="inputName" class="form-control" required>
+    </form>
+    <form>
+        <label for="inputQQ">QQ号码:</label>
+        <input type="email" id="inputQQ" class="form-control">
+        <label for="inputSex">性别:</label>
+        <select id="inputSex" class="form-control">
+            <option value="男" selected="selected">男</option>
+            <option value="女">女</option>
+        </select>
+        <label for="inputBirthday">生日:</label>
+        <input id="inputBirthday" class="form-control" required>
+    </form>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" id="btnSubmit">提交</button>
+</div>
+<script src="/assets/js/vendor/jquery.min.js"></script>
+<script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="/cookie.js"></script>
+<script>
+    $("#btnSubmit").click(function (e) {
+        e.preventDefault();
+        var account = $("#inputAccount").val();
+        var pwd = $("#inputPassword").val();
+        var verifyPwd = $("#verifyPassword").val();
+        var name = $("#inputName").val();
+        if (verifyPwd === pwd) {
+            var url = "register.php";
+            $.post(url, {account: account, pwd: pwd, name: name}, function (data, status) {
+                var dataObj = JSON.parse(data);
+                var state = dataObj.state;
+                switch (state) {
+                    case 0:
+                        setAccountCookie(dataObj);
+                        window.location.href = "index.html";
+                        break;
+                    case -1:
+                        alert('请重新注册!');
+                        break;
+                    case -2:
+                        alert('账号已经存在!');
+                        break;
+                    case -3:
+                        alert('注册系统维护中!');
+                        break;
+                }
+            });
+        } else {
+            alert('两次输入密码不一致.请重新输入');
+        }
+    });
+</script>
+<footer id="footer">
+    <hr>
+    &copy;2015 暴漫斗图①群:<span style="color: #16a765"><b>156500043</b></span><a href='http://www.miitbeian.gov.cn/'>冀ICP备10008352号</a>
+</footer>
+</body>
+</html>

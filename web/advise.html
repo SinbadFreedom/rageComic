@@ -1,0 +1,41 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/assets/css/apeWeb.css">
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/i18n/language.js"></script>
+    <script src="/assets/js/header_footer.js"></script>
+    <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+<script>
+    writeHeader();
+</script>
+<div class="container-fluid">
+    <p><b>说句心里话:</b></p>
+    <textarea id="adviseContent" style="width: 100%; height: 300px"></textarea>
+    <button id="sendAdvice">发送</button>
+    <script>
+        $("#sendAdvice").click(clickSendAdvice);
+        function clickSendAdvice() {
+            var content = $('#adviseContent').val();
+            if (content) {
+                $.post("advice.php", {data: content}, function (result) {
+                    alert(result);
+                });
+            } else {
+                alert('请输入建议.');
+            }
+        }
+    </script>
+</div>
+<script>
+    writeFooter();
+</script>
+<script src="/assets/js/vendor/jquery.min.js"></script>
+<script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="/cookie.js"></script>
+</body>
+</html>

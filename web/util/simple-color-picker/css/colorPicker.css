@@ -1,0 +1,26 @@
+div.colorPicker-picker {
+  height: 12px;
+  width: 48px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-weight:bold;
+  text-align: center;
+}
+
+div.colorPicker-palette {
+  width: 330px;
+  position: absolute;
+  border: 1px solid #598FEF;
+  background-color: #EFEFEF;
+  padding: 2px;
+}
+
+div.colorPicker-swatch {
+  height: 48px;
+  width: 48px;
+  border: 1px solid #000;
+  margin: 2px;
+  float: left;
+  cursor: pointer;
+  line-height: 12px;
+}

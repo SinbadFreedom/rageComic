@@ -1,0 +1,59 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>漫画展厅</title>
+    <link rel="stylesheet" href="/assets/css/apeWeb.css">
+    <script src="/i18n/language.js"></script>
+    <script src="/assets/js/header_footer.js"></script>
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        textarea {
+            border: 0px;
+            resize: none;
+            overflow: hidden;
+        }
+
+        .apeSpriteCon {
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .apeActor {
+            position: absolute;
+            background: transparent;
+        }
+    </style>
+    <script type="text/javascript" src="/rage_comic/rage_canvas.js"></script>
+    <script type="text/javascript" src="/assets/js/html2canvas/html2canvas.js"></script>
+</head>
+<body>
+<script>
+    writeHeader();
+</script>
+<div class="container-fluid">
+    <div>
+        <h3><span id="comicTitle" style="color: #16a765"></span></h3>
+    </div>
+    <div>
+        <b>作者: <span id="comicAuthor"></span></b>
+    </div>
+    <div>
+        <span id="comicTime"></span>
+    </div>
+    <hr>
+    <div id="comicContent" style="position: absolute;"></div>
+    <img class="apeBtn" id="fontColorPicker" src="/image/placeholder.png" width="500px" height="500px">
+</div>
+<hr>
+<canvas width="500" height="500" style="position: absolute;"></canvas>
+<script src="/assets/js/vendor/jquery.min.js"></script>
+<script src="/cookie.js"></script>
+<script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="/ljh_utils.js"></script>
+<script>
+    $(document).ready(getComicPage());
+</script>
+</body>
+</html>
